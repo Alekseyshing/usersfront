@@ -1,0 +1,13 @@
+.arrow-svg {
+  fill: #151317;
+}
+
+button:hover .arrow-svg {
+  transition: all .4s ease-in-out
+}
+
+button:hover .arrow-svg {
+  transform: rotate(180deg);
+}
+
+

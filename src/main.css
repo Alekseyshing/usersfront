@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-color: #8B5CF6;
+  --active-color: #7C3AED;
+  --background-color: #F3F4F6;
+  --border-color: #E5E7EB;
+  --danger-color: #EF4444;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.border-danger {
+  border: 2px solid var(--danger-color) !important;
+}
+
+input {
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: none;
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  width: 375px;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    width: 500px;
+  }
+}

@@ -1,0 +1,24 @@
+.icon {
+  stroke: var(--main-color);
+  fill: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-violet {
+  stroke: var(--main-color);
+  fill: var(--main-color);
+  transition: all 0.2s ease-in-out;
+}
+
+button {
+  transition: background-color 0.3s ease-in;
+}
+
+button svg {
+  fill: var(--border-color);
+  transition: fill 0.3s ease-in;
+}
+
+button:hover svg{
+  fill: #D8BFD8;
+}
