@@ -34,7 +34,7 @@ export const login = async (email: string, password: string) => {
 export const register = async (email: string, password: string, firstName: string, lastName: string) => {
   console.log('Attempting registration with:', { email, firstName, lastName });
   try {
-    const response = await api.post('/api/auth/register', { email, password, firstName, lastName });
+    const response = await api.post('/register', { email, password, firstName, lastName });
     console.log('Registration response:', response.data);
     return response.data;
   } catch (error) {
