@@ -4,7 +4,7 @@ import { REACT_APP_SERVER_URL } from '../vite-env.d';
  
 
 const api = axios.create({
-  baseURL: 'https://userss.vercel.app',
+  baseURL: 'http://localhost:5001',
   headers: {
     'Content-Type': 'application/json',
   },
