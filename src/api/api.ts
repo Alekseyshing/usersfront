@@ -2,7 +2,8 @@ import axios from 'axios';
 import { REACT_APP_SERVER_URL } from '../vite-env.d';
 
 const api = axios.create({
-  baseURL: 'https://userss.vercel.app',
+  baseURL: 'https://userss.vercel.app/',
+  // baseURL: 'http://localhost:5002/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,7 +21,11 @@ api.interceptors.request.use((config) => {
 });
 
 export const login = async (email: string, password: string) => {
-  console.log('Attempting login with:', { email, password });
+  console.log('Attempting login with:', { email, password }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
   try {
     const response = await api.post('/login', { email, password });
     console.log('Login response:', response.data);
