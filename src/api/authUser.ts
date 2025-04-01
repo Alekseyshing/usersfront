@@ -1,10 +1,11 @@
-import api from './axiosUser'
+import api from './api'
 
 export class AuthUser {
-  static async registration(username: string, email: string, password: string) {
+  static async registration(firstName: string, lastName: string, email: string, password: string) {
     try {
       const result = await api.post('/register', {
-        username,
+        firstName,
+        lastName,
         email,
         password
       });
