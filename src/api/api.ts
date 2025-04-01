@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { REACT_APP_SERVER_URL } from '../vite-env.d';
 
+ 
+
 const api = axios.create({
   baseURL: 'https://userss.vercel.app',
   headers: {
     'Content-Type': 'application/json',
   },
   withCredentials: true,
-  // Добавьте эту опцию для автоматической сериализации данных
-  transformRequest: [(data) => {
-    return JSON.stringify(data);
-  }]
 });
 
 // Добавляем интерцептор для добавления токена к запросам
@@ -50,16 +48,14 @@ export const login = async (email: string, password: string) => {
 };
 
 export const register = async (email: string, password: string, firstName: string, lastName: string) => {
-  console.log('Attempting registration with:', { email, firstName, lastName });
   try {
-    // Отправляем данные как объект, а не как строку
+    // Отправляем данные как объект
     const response = await api.post('/api/auth/register', {
       email,
       password,
       firstName,
       lastName
     });
-    console.log('Registration response:', response.data);
     return response.data;
   } catch (error) {
     console.error('Registration error:', error);

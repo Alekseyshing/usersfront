@@ -33,6 +33,12 @@ export const RegistrationPage = () => {
 
     setSpinner(true);
     try {
+      console.log('Attempting registration with:', {
+        email: userEmailRef.current.value,
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value
+      });
+
       const result = await register(
         userEmailRef.current.value,
         passwordRef.current.value,
@@ -40,14 +46,20 @@ export const RegistrationPage = () => {
         lastNameRef.current.value
       );
 
+      console.log('Registration response:', result);
+
       if (result.token) {
         localStorage.setItem('token', result.token);
         handleRegistrationResponse(true, '/login', 'Регистрация успешна');
       } else {
         handleRegistrationResponse(false, '', 'Ошибка регистрации');
       }
-    } catch (error) {
-      console.error('Registration error:', error);
+    } catch (error: any) {
+      console.error('Registration failed:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       handleRegistrationResponse(false, '', 'Ошибка регистрации');
     }
   };
