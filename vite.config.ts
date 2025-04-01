@@ -34,5 +34,11 @@ export default defineConfig({
         secure: false,
       }
     }
+  },
+  preview: {
+    port: 5173,
+    host: true,
+    strictPort: true,
+    historyApiFallback: true
   }
 })
