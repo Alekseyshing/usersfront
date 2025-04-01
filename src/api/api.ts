@@ -2,8 +2,7 @@ import axios from 'axios';
 import { REACT_APP_SERVER_URL } from '../vite-env.d';
 
 const api = axios.create({
-  baseURL: 'https://userss.vercel.app',
-  // baseURL: 'http://localhost:5002/',
+  baseURL: REACT_APP_SERVER_URL || 'https://userss.vercel.app',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -23,19 +22,21 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   response => response,
   error => {
-    console.error('API Error:', error.response?.data || error.message);
+    console.error('API Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      data: error.config?.data,
+      response: error.response?.data,
+      status: error.response?.status
+    });
     return Promise.reject(error);
   }
 );
 
 export const login = async (email: string, password: string) => {
-  console.log('Attempting login with:', { email, password }, {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+  console.log('Attempting login with:', { email, password });
   try {
-    const response = await api.post('/login', { email, password });
+    const response = await api.post('/api/auth/login', { email, password });
     console.log('Login response:', response.data);
     return response.data;
   } catch (error) {
@@ -47,7 +48,7 @@ export const login = async (email: string, password: string) => {
 export const register = async (email: string, password: string, firstName: string, lastName: string) => {
   console.log('Attempting registration with:', { email, firstName, lastName });
   try {
-    const response = await api.post('/register', { email, password, firstName, lastName });
+    const response = await api.post('/api/auth/register', { email, password, firstName, lastName });
     console.log('Registration response:', response.data);
     return response.data;
   } catch (error) {
@@ -59,7 +60,7 @@ export const register = async (email: string, password: string, firstName: strin
 export const getUsers = async () => {
   console.log('Fetching users...');
   try {
-    const response = await api.get('/users');
+    const response = await api.get('/api/users');
     console.log('Users response:', response.data);
     return response.data;
   } catch (error) {
@@ -71,7 +72,7 @@ export const getUsers = async () => {
 export const getUser = async (id: string) => {
   console.log('Fetching user:', id);
   try {
-    const response = await api.get(`/users/${id}`);
+    const response = await api.get(`/api/users/${id}`);
     console.log('User response:', response.data);
     return response.data;
   } catch (error) {

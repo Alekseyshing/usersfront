@@ -26,7 +26,11 @@
       "destination": "/assets/$1"
     },
     {
-      "source": "/api/(.*)",
+      "source": "/register",
+      "destination": "/server/index.ts"
+    },
+    {
+      "source": "/login",
       "destination": "/server/index.ts"
     },
     {
