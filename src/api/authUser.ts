@@ -3,8 +3,10 @@ import api from './axiosUser'
 export class AuthUser {
   static async registration(username: string, email: string, password: string) {
     try {
-      const result = await api.post('/users', {
-        data: { username, email, password }
+      const result = await api.post('/register', {
+        username,
+        email,
+        password
       });
 
       if (result.status === 201) {
@@ -19,7 +21,8 @@ export class AuthUser {
   static async login(email: string, password: string) {
     try {
       const result = await api.post('/login', {
-        data: { email, password }
+        email,
+        password
       });
 
       if (result.status === 200) {

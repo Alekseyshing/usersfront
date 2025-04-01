@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' 
-    ? 'https://userss.vercel.app/api'
-    : 'http://localhost:5001/api'
+  baseURL: 'https://userss.vercel.app',
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  },
+  withCredentials: true
 })
 
 export default instance;
