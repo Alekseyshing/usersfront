@@ -2,14 +2,13 @@ import axios from 'axios';
 import { REACT_APP_SERVER_URL } from '../vite-env.d';
 
 const api = axios.create({
-  baseURL: 'https://userss.vercel.app/',
+  baseURL: 'https://userss.vercel.app',
   // baseURL: 'http://localhost:5002/',
   headers: {
     'Content-Type': 'application/json',
   },
   withCredentials: true,
 });
-
 
 // Добавляем интерцептор для добавления токена к запросам
 api.interceptors.request.use((config) => {
@@ -19,6 +18,15 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Добавляем интерцептор для логирования ошибок
+api.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
 
 export const login = async (email: string, password: string) => {
   console.log('Attempting login with:', { email, password }, {
